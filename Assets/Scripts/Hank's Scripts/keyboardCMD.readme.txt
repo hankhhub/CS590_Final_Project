@@ -1,0 +1,4 @@
+'b': while holding b, click two objects to select source followed by target object
+'n': while holding n, click two object surfaces to align two objects
+'m': while holding m and selecting [start] [end] [contact], click on object surface to 
+      determine centroids used to decide start and end positions of animation

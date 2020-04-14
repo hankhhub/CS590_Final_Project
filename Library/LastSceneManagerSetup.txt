@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Hank's Scene.unity
+- path: Assets/Scenes/GearTest.unity
   isLoaded: 1
   isActive: 1

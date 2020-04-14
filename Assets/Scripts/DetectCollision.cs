@@ -21,10 +21,10 @@ public class DetectCollision : MonoBehaviour
           //  GetComponent<Animator>().enabled = true;
         } */
 
-        if(MeshRaycast.isAligned && triggerEnable && Input.GetKey(KeyCode.Alpha8))
+        if(triggerEnable && Input.GetKey(KeyCode.Alpha8))
         {
             triggerEnable = false;
-            myAnimationController.SetBool("Collision", true);
+           // myAnimationController.SetBool("Collision", true);
             trigger = true;
             Debug.Log("Enter");
         }
@@ -32,7 +32,7 @@ public class DetectCollision : MonoBehaviour
         if (!triggerEnable && Input.GetKey(KeyCode.Alpha9))
         {
             triggerEnable = true;
-            myAnimationController.SetBool("Collision", false);
+          //  myAnimationController.SetBool("Collision", false);
             trigger = false;
             Debug.Log("Exit");
         }

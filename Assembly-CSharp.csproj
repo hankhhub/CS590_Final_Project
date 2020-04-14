@@ -60,18 +60,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MeshRaycast.cs" />
     <Compile Include="Assets\Scripts\changeTransform.cs" />
     <Compile Include="Assets\Scripts\DetectCollision.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\AnimationControl.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\MeshParser.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\MeshRaycast.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\MouseInteraction.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\ObjectAlign.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\Rotation.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\TriangleDisjointSets.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\Utility\ExposeMethodInEditor.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\Utility\MonoBehaviourCustomEditor.cs" />
+    <Compile Include="Assets\Scripts\SaveFunction.cs" />
+    <Compile Include="Assets\Scripts\SaveFunction_BeltandPulley.cs" />
     <Compile Include="Assets\Scripts\Screw_Animation.cs" />
     <Compile Include="Assets\Scripts\ScrewController.cs" />
     <Compile Include="Assets\Scripts\SelectObject.cs" />
     <Compile Include="Assets\Scripts\SelectTransform.cs" />
     <None Include="Assets\StandardVertex.shader" />
+    <None Include="Assets\Resources\Text.txt" />
+    <None Include="Assets\Functions\Text.txt" />
+    <None Include="Assets\Resources\Text_BeltandPulley.txt" />
+    <None Include="Assets\Scripts\Hank's Scripts\keyboardCMD.readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/user/Desktop/CS590/CS590_FinalProject/CS590_Final_Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
