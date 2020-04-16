@@ -16,10 +16,11 @@ public class AnimationControl : MonoBehaviour
 
     private bool animeReady = false;
     private float distThreshold = 0.1f;
+    private bool clockwise = false;
    
     void Start()
     {
-        highlighter = GameObject.Find("MeshHighlighter").GetComponent<MeshRaycast>();       
+        highlighter = GameObject.Find("MeshHighlighter").GetComponent<MeshRaycast>();   
     }
  
     void Update()
@@ -44,9 +45,57 @@ public class AnimationControl : MonoBehaviour
                 StartCoroutine(MovementAnimation());
                 animeReady = false;
             }
-        }
+        }      
+    }
 
-       
+    /// <summary>
+    /// Before animation starts use text file animation rule to setup gear orientation
+    /// </summary>
+    /// <param name="rotateAxis"></param>
+    /// <param name="angleOffset"></param>
+    /// <param name="children"></param>
+    public void GearSetup(Vector3 rotateAxis, float angleOffset, Transform[] children)
+    {
+        //children = gameObject.GetComponentsInChildren<Transform>();
+    
+        GearControl gearSource = children[1].GetComponent<GearControl>();
+        gearSource.rotateAxis = rotateAxis;
+        gearSource.clockwise = false;
+        gearSource.speed = 100f;
+      
+        for (int i = 2; i < children.Length; i++)
+        {
+            //totOffset += angleOffset;
+            //children[i].Rotate(Vector3.right, totOffset);           
+            //gearSource = children[i-1].GetComponent<GearControl>();
+            GearControl gear = children[i].GetComponent<GearControl>();     
+            if(gear.reference != null)
+            {               
+                gear.clockwise = !gear.reference.clockwise;
+                if (gear.clockwise)                
+                    children[i].Rotate(Vector3.right, angleOffset);              
+
+                gear.speed = 100f;
+                gear.rotateAxis = !gear.reference.clockwise ? -rotateAxis : rotateAxis;
+            }
+            else
+            {
+                Debug.LogError("Gear " + i + "is missing reference gear!");
+            }           
+            
+        }       
+        
+    }
+
+    [ExposeInEditor(RuntimeOnly = false)]
+    public void ImportGearRule()
+    {
+        rule = new AnimationRule();
+        rule.gearAngle = highlighter.animationRule.gearAngle;
+        rule.targetNormal = highlighter.animationRule.targetNormal;
+        Transform[] gears = gameObject.GetComponentsInChildren<Transform>();
+        GearSetup(rule.targetNormal, rule.gearAngle, gears);
+        animeReady = true;
     }
 
     // Screw case animation 

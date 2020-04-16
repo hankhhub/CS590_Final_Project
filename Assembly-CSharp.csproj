@@ -64,11 +64,11 @@
     <Compile Include="Assets\Scripts\DetectCollision.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\AnimationControl.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Hank's Scripts\GearControl.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\MeshParser.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\MeshRaycast.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\MouseInteraction.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\ObjectAlign.cs" />
-    <Compile Include="Assets\Scripts\Hank's Scripts\Rotation.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\TriangleDisjointSets.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\Utility\ExposeMethodInEditor.cs" />
     <Compile Include="Assets\Scripts\Hank's Scripts\Utility\MonoBehaviourCustomEditor.cs" />

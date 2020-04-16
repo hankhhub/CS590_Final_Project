@@ -13,6 +13,7 @@ public class AnimationRule
     public Vector3 endpt;
     public Vector3 contactpt;
 
+    public float gearAngle;
     public AnimationRule()
     {
         objNames = new List<string>();
@@ -103,12 +104,14 @@ public class MeshRaycast : MonoBehaviour
         // Debugging graphics
         //meshParser.FillHighlight(mesh, hlt_list, Color.magenta);
         //Debug.DrawLine(hitTransform.TransformPoint(surfaceCentroid), Vector3.zero, Color.red, 0.4f, false);
+        GetRotationAxis(hit);
         GetGearInfo();
         AlignObjects(hit, surfaceCentroid);
         SelectAnimationObjects(hit);
         CreateMarkers(hit, mesh, surfaceCentroid);
     }
 
+    // [Ananya] Function to be included in drop down menu for gear case
     public void GetGearInfo()
     {
         if (Input.GetKey(KeyCode.G))
@@ -117,12 +120,20 @@ public class MeshRaycast : MonoBehaviour
             {
                 int cogNum = meshParser.ConnectTriByArea(hlt_list);
                 float angleOffset = 0.5f * (360.0f / (float)cogNum);
-                float totOffset = 0f;
-                foreach(var go in gears)
-                {
-                    go.transform.Rotate(Vector3.right, totOffset);
-                    totOffset += angleOffset;
-                }
+                animationRule.gearAngle = angleOffset;
+                              
+            }
+        }
+    }
+
+    // [Ananya] Function to be included in drop down menu for gear case
+    public void GetRotationAxis(RaycastHit hit)
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animationRule.targetNormal = hit.transform.InverseTransformVector(hit.normal).normalized;               
             }
         }
     }
