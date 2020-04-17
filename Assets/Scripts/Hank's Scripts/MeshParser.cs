@@ -103,9 +103,16 @@ public class MeshParser : MonoBehaviour
                 p0 = hitTransform.TransformPoint(p0); // convert local to world position
                 p1 = hitTransform.TransformPoint(p1);
                 p2 = hitTransform.TransformPoint(p2);
+<<<<<<< Updated upstream
                 Debug.DrawLine(p0, p1, Color.blue, 0.1f, false);
                 Debug.DrawLine(p1, p2, Color.blue, 0.1f, false);
                 Debug.DrawLine(p2, p0, Color.blue, 0.1f, false);
+=======
+                Debug.DrawLine(p0, p1, Color.cyan, 0.1f, false);
+                Debug.DrawLine(p1, p2, Color.cyan, 0.1f, false);
+                Debug.DrawLine(p2, p0, Color.cyan, 0.1f, false);
+                highlights.Add(cnt);
+>>>>>>> Stashed changes
             }
         }
     }

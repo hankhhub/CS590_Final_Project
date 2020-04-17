@@ -11,16 +11,27 @@ public class SelectObject : MonoBehaviour
     public GameObject sourceScrew;
     public GameObject targetNut;
     public GameObject sourceGear;
+<<<<<<< Updated upstream
     public GameObject targetGear;
     public GameObject sourceHand;
     public GameObject targetHand;
+=======
+    public GameObject BeltandPulley;
+>>>>>>> Stashed changes
     private static GameObject sourceObject, targetObject, selectedObject;
     private static Button transformBtn;
     public static GameObject x_control, y_control, z_control;
     public Button Button;
     public GameObject x_axis, y_axis, z_axis;
     public static int btnCounter = 0;
+<<<<<<< Updated upstream
     
+=======
+    private static bool animationBtnPressed = false;
+    private static int bigpulley_speed;
+    public static string combinationName;
+
+>>>>>>> Stashed changes
     void Start()
     {
         transformBtn = Button;
@@ -63,24 +74,37 @@ public class SelectObject : MonoBehaviour
         Debug.Log(dropdownSource.options[dropdownSource.value].text);
         string sourceName = dropdownSource.options[dropdownSource.value].text;
         sourceScrew.gameObject.SetActive(false);
+<<<<<<< Updated upstream
         sourceGear.gameObject.SetActive(false);
         //sourceHand.gameObject.SetActive(true);
+=======
+        targetNut.gameObject.SetActive(false);
+        sourceGear.gameObject.SetActive(false);
+        BeltandPulley.gameObject.SetActive(false);
+>>>>>>> Stashed changes
         switch (sourceName)
         {
             case "Screw":
+                combinationName = "Screw_Nut_Interaction";
                 sourceScrew.gameObject.SetActive(true);
                 targetNut.gameObject.SetActive(true);
                 sourceObject = sourceScrew.gameObject;
                 targetObject = targetNut.gameObject;
                 break;
             case "Gear":
+                combinationName = "Gear";
                 sourceGear.gameObject.SetActive(true);
-                targetGear.gameObject.SetActive(true);
-                sourceObject = sourceScrew.gameObject;
-                targetObject = targetNut.gameObject;
+                sourceObject = sourceGear.gameObject;
                 break;
+<<<<<<< Updated upstream
             case "Hand":
                 //sourceHand.gameObject.SetActive(true);
+=======
+            case "Belt and Pulley":
+                combinationName = "Belt and Pulley";
+                BeltandPulley.gameObject.SetActive(true);
+                sourceObject = BeltandPulley.gameObject;
+>>>>>>> Stashed changes
                 break;
         }
     }
@@ -175,7 +199,7 @@ public class SelectObject : MonoBehaviour
     {
         x_control.GetComponent<MeshRenderer>().material.color = Color.red;
         y_control.GetComponent<MeshRenderer>().material.color = Color.green;
-        z_control.GetComponent<MeshRenderer>().material.color = Color.blue;
+        z_control.GetComponent<MeshRenderer>().material.color = Color.cyan;
         if (x)
             x_control.GetComponent<MeshRenderer>().material.color = Color.black;
         else if (y)
