@@ -1,41 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9064900033919306593
-GameObject:
+--- !u!114 &9064900034888300279
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9064900033919306595}
-  m_Layer: 0
-  m_Name: GearControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9064900033919306595
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064900033919306593}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.09, y: 0.1348877, z: -3.361353}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7927759398924123753}
-  - {fileID: 7927759398961316910}
-  - {fileID: 7927759398938433847}
-  - {fileID: 7927759398872982074}
-  - {fileID: 7927759399945768832}
-  - {fileID: 7927759400111801957}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7927759398872628762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d8a6aeee8422444bfa4507a7b1a090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reference: {fileID: 9064900034409581611}
+  rotateAxis: {x: 0, y: 0, z: 0}
+  speed: 0
+  clockwise: 0
 --- !u!114 &9064900034300572533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,22 +64,6 @@ MonoBehaviour:
   rotateAxis: {x: 0, y: 0, z: 0}
   speed: 0
   clockwise: 0
---- !u!114 &9064900034888300279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7927759398872628762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d8a6aeee8422444bfa4507a7b1a090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reference: {fileID: 9064900034409581611}
-  rotateAxis: {x: 0, y: 0, z: 0}
-  speed: 0
-  clockwise: 0
 --- !u!114 &9064900035383458124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +96,42 @@ MonoBehaviour:
   rotateAxis: {x: 0, y: 0, z: 0}
   speed: 0
   clockwise: 0
+--- !u!1 &9064900033919306593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9064900033919306595}
+  m_Layer: 0
+  m_Name: GearControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9064900033919306595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064900033919306593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.09, y: 0.1348877, z: -3.361353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7927759398924123753}
+  - {fileID: 7927759398961316910}
+  - {fileID: 7927759398938433847}
+  - {fileID: 7927759398872982074}
+  - {fileID: 7927759399945768832}
+  - {fileID: 7927759400111801957}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9064900033785980571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,6 +139,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name
@@ -240,6 +245,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name
@@ -341,6 +351,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name
@@ -437,6 +452,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name
@@ -538,6 +558,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name
@@ -639,6 +664,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9064900033919306595}
     m_Modifications:
+    - target: {fileID: 1425936453725088761, guid: e83314e963fa460429c17ba6157bbe84,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b45683da1df00e45ba0f53804751a78, type: 2}
     - target: {fileID: 1425936453727352123, guid: e83314e963fa460429c17ba6157bbe84,
         type: 3}
       propertyPath: m_Name

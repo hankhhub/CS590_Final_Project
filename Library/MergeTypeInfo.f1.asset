@@ -5,7 +5,6 @@ MergeTypeInfo:
 - {id: 1049, name: AnnotationManager, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 1004, name: AssetDatabaseV1, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 1028, name: AssetMetaData, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
-- {id: 641289076, name: AudioBuildInfo, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 668709126, name: BuiltAssetBundleInfoSet, ismulti: 0, baseid: 0, requires: '',
   conflicts: ''}
 - {id: 1045, name: EditorBuildSettings, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
@@ -316,7 +315,6 @@ MergeTypeInfo:
 - {id: 1126, name: PackedAssets, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 877146078, name: PlatformModuleSetup, ismulti: 0, baseid: 0, requires: '',
   conflicts: ''}
-- {id: 382020655, name: PluginBuildInfo, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 1001480554, name: Prefab, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 1001, name: PrefabInstance, ismulti: 0, baseid: 0, requires: '', conflicts: ''}
 - {id: 1386491679, name: PresetManager, ismulti: 0, baseid: 0, requires: '', conflicts: ''}

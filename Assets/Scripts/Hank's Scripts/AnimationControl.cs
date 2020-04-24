@@ -28,6 +28,8 @@ public class AnimationControl : MonoBehaviour
         public string combination_name;
         public string Animation_name;
         public string sourceRotation;
+        public string sourceNormal;
+        public string targetCentroid;
         public string targetNormal;
         public string sourcePosition;
         public string startpt;
@@ -141,7 +143,14 @@ public class AnimationControl : MonoBehaviour
         GearControl gearSource = children[1].GetComponent<GearControl>();
         gearSource.rotateAxis = rotateAxis;
         gearSource.clockwise = false;
-        gearSource.speed = float.Parse(CustomFunction_Gear.speed);
+        if (animeReady)
+        {
+            gearSource.speed = float.Parse(CustomFunction_Gear.speed);
+        }
+        else
+        {
+            gearSource.speed = 0;
+        }
 
         for (int i = 2; i < children.Length; i++)
         {
@@ -155,7 +164,14 @@ public class AnimationControl : MonoBehaviour
                 if (gear.clockwise)
                     children[i].Rotate(Vector3.right, angleOffset);
 
-                gear.speed = float.Parse(CustomFunction_Gear.speed);
+                if (animeReady)
+                {
+                    gear.speed = float.Parse(CustomFunction_Gear.speed);
+                }
+                else
+                {
+                    gear.speed = 0;
+                }
                 gear.rotateAxis = !gear.reference.clockwise ? -rotateAxis : rotateAxis;
             }
             else
@@ -187,12 +203,12 @@ public class AnimationControl : MonoBehaviour
 
         while ((dot >= 0.3) && (animeReady))
         {
-            
+            Debug.Log("Dot: " + dot);
             speed = float.Parse(CustomFunction_Screw_Nut_Interaction.speed);
             GameObject.Find("Screw").transform.position -= rule.targetNormal * Time.deltaTime * speed;
             direction = (marker_end.transform.position - marker_contact.transform.position).normalized;
             dot = Vector3.Dot(direction, rule.targetNormal);
-            GameObject.Find("Screw").transform.Rotate(rule.targetNormal, 10f, relativeTo: Space.Self);
+            GameObject.Find("Screw").transform.Rotate(rule.targetNormal, 30f, relativeTo: Space.World);
             yield return null;
         }
         animeReady = true;
@@ -201,7 +217,8 @@ public class AnimationControl : MonoBehaviour
     // Belt and Pulley case animation 
     IEnumerator MovementAnimation_BeltandPulley()
     {
-        float big_pulley_speed, small_pulley_speed;
+        float big_pulley_speed, small_pulley_speed, big_pulley1_speed, small_pulley1_speed, big_pulley2_speed, small_pulley2_speed;
+        float pulley_speed_ratio = (float.Parse(CustomFunction_BeltandPulley.big_pulley_radius)) / (float.Parse(CustomFunction_BeltandPulley.small_pulley_radius));
         Transform transform = GameObject.Find("Belt and Pulley").transform;
         foreach (Transform child in transform)
         {
@@ -212,8 +229,28 @@ public class AnimationControl : MonoBehaviour
             }
             else if (child.name == "SMALL PULLEY")
             {
-                small_pulley_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed) * float.Parse(CustomFunction_BeltandPulley.big_pulley_radius)) / (float.Parse(CustomFunction_BeltandPulley.small_pulley_radius));
+                small_pulley_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed) * pulley_speed_ratio);
                 child.Rotate(rule_BeltandPulley.surfaceNormal, small_pulley_speed, relativeTo: Space.World);
+            }
+            else if (child.name == "BIG PULLEY_1")
+            {
+                big_pulley1_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed) * pulley_speed_ratio);
+                child.Rotate(rule_BeltandPulley.surfaceNormal, big_pulley1_speed, relativeTo: Space.World);
+            }
+            else if (child.name == "SMALL PULLEY_1")
+            {
+                small_pulley1_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed) * pulley_speed_ratio * pulley_speed_ratio);
+                child.Rotate(rule_BeltandPulley.surfaceNormal, small_pulley1_speed, relativeTo: Space.World);
+            }
+            else if (child.name == "BIG PULLEY_2")
+            {
+                big_pulley2_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed));
+                child.Rotate(rule_BeltandPulley.surfaceNormal, big_pulley2_speed, relativeTo: Space.World);
+            }
+            else if (child.name == "SMALL PULLEY_2")
+            {
+                small_pulley2_speed = (float.Parse(CustomFunction_BeltandPulley.big_pulley_speed) * pulley_speed_ratio);
+                child.Rotate(rule_BeltandPulley.surfaceNormal, small_pulley2_speed, relativeTo: Space.World);
             }
         }
         yield return null;
@@ -223,8 +260,8 @@ public class AnimationControl : MonoBehaviour
 
     void AlignObjectsNoviceClick()
     {
-        GameObject.Find("Screw").transform.rotation = rule.sourceRotation;//Quaternion.FromToRotation(-rule.sourceNormal, rule.targetNormal) * GameObject.Find("Screw").transform.rotation;
-        GameObject.Find("Screw").transform.position = rule.sourcePosition;//GameObject.Find("Nut").transform.TransformPoint(rule.targetCentroid) + rule.targetNormal;
+        GameObject.Find("Screw").transform.rotation = Quaternion.FromToRotation(-rule.sourceNormal, rule.targetNormal) * rule.sourceRotation;//GameObject.Find("Screw").transform.rotation; //rule.sourceRotation;
+        GameObject.Find("Screw").transform.position = GameObject.Find("Nut").transform.TransformPoint(rule.targetCentroid) + rule.targetNormal; //rule.sourcePosition;
     }
 
 
@@ -252,6 +289,8 @@ public class AnimationControl : MonoBehaviour
                 rule = new AnimationRule(highlighter.animationRule.objNames);
                 //Create markers    
                 rule.sourceRotation = StringToQuaternion(CustomFunction_Screw_Nut_Interaction.sourceRotation);
+                rule.sourceNormal = StringToVector3(CustomFunction_Screw_Nut_Interaction.sourceNormal);
+                rule.targetCentroid = StringToVector3(CustomFunction_Screw_Nut_Interaction.targetCentroid);
                 rule.targetNormal = StringToVector3(CustomFunction_Screw_Nut_Interaction.targetNormal);
                 rule.sourcePosition = StringToVector3(CustomFunction_Screw_Nut_Interaction.sourcePosition);
                 rule.startpt = StringToVector3(CustomFunction_Screw_Nut_Interaction.startpt);
@@ -307,6 +346,7 @@ public class AnimationControl : MonoBehaviour
                 else
                 {
                     animeReady = false;
+                    GearSetup(rule.targetNormal, rule.gearAngle, gears);
                 }
                 break;
             case "Belt and Pulley":

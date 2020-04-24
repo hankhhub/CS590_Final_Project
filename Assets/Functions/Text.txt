@@ -1,0 +1,49 @@
+[{
+  "name" : "Animation1",
+  "source": "Screw",
+  "target": "Nut",
+  "object": "Screw",
+  "Tx": 0,
+  "Ty": 0,
+  "Tz": 0,
+  "Rx": 0,
+  "Ry": 0,
+  "Rz": 0,
+  "S": 0
+}, {
+  "name" : "Animation2",
+  "source": "Screw",
+  "target": "Nut",
+  "object": "Nut",
+  "Tx": 0,
+  "Ty": 0,
+  "Tz": 0,
+  "Rx": 0,
+  "Ry": 0,
+  "Rz": 0,
+  "S": 0
+},{
+  "name" : "Animation3",
+  "source": "LargeGear",
+  "target": "SmallGear",
+  "object": "LargeGear",
+  "Tx": 0,
+  "Ty": 0,
+  "Tz": 0,
+  "Rx": 0,
+  "Ry": 0,
+  "Rz": 0,
+  "S": 0
+}, {
+  "name" : "Animation4",
+  "source": "Belt",
+  "target": "Pulley",
+  "object": "Belt",
+  "Tx": 0,
+  "Ty": 0,
+  "Tz": 0,
+  "Rx": 0,
+  "Ry": 0,
+  "Rz": 0,
+  "S": 0
+}]

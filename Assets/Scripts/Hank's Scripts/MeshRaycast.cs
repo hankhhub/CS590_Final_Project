@@ -9,6 +9,8 @@ public class AnimationRule
 {
     public List<string> objNames;
     public Quaternion sourceRotation;
+    public Vector3 sourceNormal;
+    public Vector3 targetCentroid;
     public Vector3 targetNormal;
     public Vector3 sourcePosition;
     public Vector3 startpt;
@@ -146,17 +148,18 @@ public class MeshRaycast : MonoBehaviour
     // [Ananya] Function to be included in drop down menu for gear case
     public void GetGearInfo()
     {
-        int cogNum = meshParser.ConnectTriByArea(hlt_list);
+        meshParser.ConnectTriByArea(hlt_list);
+        int cogNum = meshParser.tds.totalSets();
         float angleOffset = 0.5f * (360.0f / (float)cogNum);
         animationRule.gearAngle = angleOffset;
-        SaveFunction_BeltandPulley.CustomFunction_Gear.gearAngle = animationRule.gearAngle.ToString();
+        SaveFunction_BeltandPulley.CustomFunction_Gear.gearAngle = animationRule.gearAngle.ToString("F4");
     }
 
     // [Ananya] Function to be included in drop down menu for gear case
     public void GetRotationAxis(RaycastHit hit)
     {
         animationRule.targetNormal = hit.transform.InverseTransformVector(hit.normal).normalized;
-        SaveFunction_BeltandPulley.CustomFunction_Gear.surfaceNormal = animationRule.targetNormal.ToString();
+        SaveFunction_BeltandPulley.CustomFunction_Gear.surfaceNormal = animationRule.targetNormal.ToString("F4");
     }
 
     /// <summary>
@@ -194,17 +197,17 @@ public class MeshRaycast : MonoBehaviour
                         {
                             case 0:
                                 animationRule.startpt = centroid;
-                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.startpt = centroid.ToString();
+                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.startpt = centroid.ToString("F4");
                                 meshParser.FillHighlight(mesh, hlt_list, Color.blue);
                                 break;
                             case 1:
                                 animationRule.endpt = centroid;
-                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.endpt = centroid.ToString();
+                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.endpt = centroid.ToString("F4");
                                 meshParser.FillHighlight(mesh, hlt_list, Color.blue);
                                 break;
                             case 2:
                                 animationRule.contactpt = centroid;
-                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.contactpt = centroid.ToString();
+                                SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.contactpt = centroid.ToString("F4");
                                 meshParser.FillHighlight(mesh, hlt_list, Color.red);
                                 break;
 
@@ -235,11 +238,11 @@ public class MeshRaycast : MonoBehaviour
                         {
                             case 0:
                                 Debug.Log("Big Pulley Radius");
-                                SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.big_pulley_radius = radius.ToString();
+                                SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.big_pulley_radius = radius.ToString("F4");
                                 meshParser.FillHighlight(mesh, hlt_list, Color.blue);
                                 break;
                             case 1:
-                                SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.small_pulley_radius = radius.ToString();
+                                SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.small_pulley_radius = radius.ToString("F4");
                                 meshParser.FillHighlight(mesh, hlt_list, Color.green);
                                 break;
 
@@ -295,14 +298,16 @@ public class MeshRaycast : MonoBehaviour
 
                 if (selectObjects.Count == 2)
                 {
-                    selectObjects[0].obj.transform.rotation = Quaternion.FromToRotation(-selectObjects[0].normal, selectObjects[1].normal) * selectObjects[0].obj.transform.rotation;
-                    selectObjects[0].obj.transform.position = selectObjects[1].obj.transform.TransformPoint(selectObjects[1].centroid) + selectObjects[1].normal;
                     animationRule.sourceRotation = selectObjects[0].obj.transform.rotation;
-                    animationRule.targetNormal = selectObjects[1].normal;
                     animationRule.sourcePosition = selectObjects[0].obj.transform.position;
-                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.sourceRotation = animationRule.sourceRotation.ToString();
-                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.targetNormal = animationRule.targetNormal.ToString();
-                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.sourcePosition = animationRule.sourcePosition.ToString();
+                    selectObjects[0].obj.transform.rotation = Quaternion.FromToRotation(-selectObjects[0].normal, selectObjects[1].normal) * selectObjects[0].obj.transform.rotation;
+                    selectObjects[0].obj.transform.position = selectObjects[1].obj.transform.TransformPoint(selectObjects[1].centroid) + selectObjects[1].normal;                   
+                    animationRule.targetNormal = selectObjects[1].normal;               
+                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.sourceNormal = selectObjects[0].normal.ToString("F4");
+                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.targetCentroid = selectObjects[1].centroid.ToString("F4");
+                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.sourceRotation = animationRule.sourceRotation.ToString("F4");
+                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.targetNormal = animationRule.targetNormal.ToString("F4");
+                    SaveFunction_BeltandPulley.CustomFunction_Screw_Nut_Interaction.sourcePosition = animationRule.sourcePosition.ToString("F4");
                     selectObjects.Clear();
                     isAligned = true;
                 }
@@ -326,7 +331,7 @@ public class MeshRaycast : MonoBehaviour
                     SurfaceInfo surfInfo;
                     surfInfo.obj = go;
                     surfInfo.normal = hit.normal;
-                    SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.surfaceNormal = surfInfo.normal.ToString();
+                    SaveFunction_BeltandPulley.CustomFunction_BeltandPulley.surfaceNormal = surfInfo.normal.ToString("F4");
                     Debug.Log(go.name + surfInfo.normal);
                     surfInfo.centroid = surfaceCentroid;
                     selectObjects.Add(surfInfo);

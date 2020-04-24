@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/Scenes/Hank's Scene.unity
-=======
-- path: Assets/Scenes/Belt and Pulley.unity
->>>>>>> Stashed changes
+- path: Assets/Scenes/Authoring.unity
   isLoaded: 1
   isActive: 1

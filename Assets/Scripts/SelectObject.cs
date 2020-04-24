@@ -11,27 +11,18 @@ public class SelectObject : MonoBehaviour
     public GameObject sourceScrew;
     public GameObject targetNut;
     public GameObject sourceGear;
-<<<<<<< Updated upstream
-    public GameObject targetGear;
-    public GameObject sourceHand;
-    public GameObject targetHand;
-=======
     public GameObject BeltandPulley;
->>>>>>> Stashed changes
+    public GameObject Transmission;
     private static GameObject sourceObject, targetObject, selectedObject;
     private static Button transformBtn;
     public static GameObject x_control, y_control, z_control;
     public Button Button;
     public GameObject x_axis, y_axis, z_axis;
     public static int btnCounter = 0;
-<<<<<<< Updated upstream
-    
-=======
     private static bool animationBtnPressed = false;
     private static int bigpulley_speed;
     public static string combinationName;
 
->>>>>>> Stashed changes
     void Start()
     {
         transformBtn = Button;
@@ -67,21 +58,34 @@ public class SelectObject : MonoBehaviour
                 dropdownSource.Hide();
             }
         }
+        if(animationBtnPressed)
+        {
+            sourceObject.transform.RotateAround(sourceObject.transform.position, sourceObject.transform.forward, bigpulley_speed * Time.deltaTime);
+        }
     }
 
     public void onDropdownSelected()
     {
         Debug.Log(dropdownSource.options[dropdownSource.value].text);
         string sourceName = dropdownSource.options[dropdownSource.value].text;
-        sourceScrew.gameObject.SetActive(false);
-<<<<<<< Updated upstream
-        sourceGear.gameObject.SetActive(false);
-        //sourceHand.gameObject.SetActive(true);
-=======
-        targetNut.gameObject.SetActive(false);
-        sourceGear.gameObject.SetActive(false);
-        BeltandPulley.gameObject.SetActive(false);
->>>>>>> Stashed changes
+        if(sourceScrew != null)
+        {
+            sourceScrew.gameObject.SetActive(false);
+        }
+        if(targetNut != null)
+        {
+            targetNut.gameObject.SetActive(false);
+        }
+        if(sourceGear != null)
+        {
+            sourceGear.gameObject.SetActive(false);
+        }
+        if(BeltandPulley != null)
+        {
+            BeltandPulley.gameObject.SetActive(false);
+        }
+        Transmission.gameObject.SetActive(false);
+        
         switch (sourceName)
         {
             case "Screw":
@@ -96,15 +100,15 @@ public class SelectObject : MonoBehaviour
                 sourceGear.gameObject.SetActive(true);
                 sourceObject = sourceGear.gameObject;
                 break;
-<<<<<<< Updated upstream
-            case "Hand":
-                //sourceHand.gameObject.SetActive(true);
-=======
             case "Belt and Pulley":
                 combinationName = "Belt and Pulley";
                 BeltandPulley.gameObject.SetActive(true);
                 sourceObject = BeltandPulley.gameObject;
->>>>>>> Stashed changes
+                break;
+            case "Transmission":
+                combinationName = "Transmission";
+                Transmission.gameObject.SetActive(true);
+                sourceObject = Transmission.gameObject;
                 break;
         }
     }
@@ -206,6 +210,27 @@ public class SelectObject : MonoBehaviour
             y_control.GetComponent<MeshRenderer>().material.color = Color.black;
         else if (z)
             z_control.GetComponent<MeshRenderer>().material.color = Color.black;
+    }
+
+    public static string getSourceName()
+    {
+        return sourceObject.name;
+    }
+
+    public static string getTargetName()
+    {
+        return targetObject.name;
+    }
+
+    public static string getObjectName()
+    {
+        return selectedObject.name;
+    }
+
+    public static void runAnimation_BeltandPulley(int speed)
+    {
+        animationBtnPressed = !animationBtnPressed;
+        bigpulley_speed = speed;
     }
 
 }

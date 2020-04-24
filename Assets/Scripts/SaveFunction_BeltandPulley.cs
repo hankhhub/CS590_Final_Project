@@ -65,6 +65,8 @@ public class SaveFunction_BeltandPulley : MonoBehaviour
         public string combination_name;
         public string Animation_name;
         public string sourceRotation;
+        public string sourceNormal;
+        public string targetCentroid;
         public string targetNormal;
         public string sourcePosition;
         public string startpt;
